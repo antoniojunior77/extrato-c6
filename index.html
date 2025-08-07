@@ -110,10 +110,13 @@
 
     input.addEventListener("input", function () {
       const termo = input.value.toLowerCase();
+      const regexData = new RegExp("\\d{2}/\\d{2}");
+
       transacoes.forEach(function (t) {
         const tipo = t.querySelector(".tipo")?.textContent.toLowerCase() || "";
         const desc = t.querySelector(".desc")?.textContent.toLowerCase() || "";
-        const data = (tipo.match(/\\d{2}\\/\\d{2}/) || [])[0] || ""; // extrai data tipo "06/08"
+        const data = (tipo.match(regexData) || [])[0] || "";
+
         if (
           tipo.includes(termo) ||
           desc.includes(termo) ||
@@ -127,6 +130,7 @@
     });
   });
 </script>
+
 
 </head>
 <body>
